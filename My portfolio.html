@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akinbodun Abiodun Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* RESET & BASE */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
+body { background:#f4f4f9; color:#333; line-height:1.6; overflow-x:hidden; }
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; }
+
+/* HEADER */
+header {
+    background:#1f2937;
+    color:#fff;
+    text-align:center;
+    padding:100px 20px;
+    opacity:0;
+    transform:translateY(-50px);
+    animation:headerFadeIn 1s forwards;
+}
+header h1 { font-size:3rem; margin-bottom:10px; animation:slideIn 1.2s forwards; opacity:0; }
+header p { font-size:1.2rem; color:#a1a1aa; animation:slideIn 1.5s forwards; opacity:0; }
+
+/* NAVBAR */
+nav {
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+    opacity:0;
+    transform:translateY(-20px);
+    animation:navFadeIn 2s forwards;
+    position: relative;
+}
+nav a {
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+nav a:hover { color:#3b82f6; }
+
+/* Hamburger menu */
+.menu-toggle {
+    display:none;
+    flex-direction:column;
+    cursor:pointer;
+    position:absolute;
+    top:-10px;
+    right:20px;
+}
+.menu-toggle div {
+    width:25px;
+    height:3px;
+    background:#fff;
+    margin:5px 0;
+    transition: all 0.3s ease;
+}
+.nav-links {
+    display:flex;
+}
+.nav-links.responsive { 
+    flex-direction:column;
+    background:#1f2937;
+    position:absolute;
+    top:50px;
+    right:0;
+    width:200px;
+    padding:10px;
+    border-radius:8px;
+}
+.nav-links.responsive a { margin:10px 0; text-align:center; }
+
+/* SECTIONS */
+section { padding:60px 20px; max-width:1000px; margin:auto; opacity:0; transform:translateY(50px); }
+section h2 { text-align:center; margin-bottom:30px; font-size:2rem; color:#111827; }
+
+/* ABOUT */
+#about { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:40px; transition: margin-top 0.3s ease;}
+#about img { width:250px; border-radius:50%; border:4px solid #3b82f6; transform:scale(0); animation:imgScale 1s forwards; }
+#about .info p { font-size:1.1rem; margin-bottom:15px; transform:translateX(-50px); opacity:0; animation:textSlideIn 1s forwards; animation-delay:1s; }
+
+/* PROJECTS */
+.projects-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+.project-card {
+    background:#fff; border-radius:10px; padding:20px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    transform:translateY(50px); opacity:0;
+}
+.project-card:hover { transform:translateY(-5px) scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.2); transition:all 0.3s; }
+
+/* SKILLS */
+.skills { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; }
+.skill { background:#3b82f6; color:#fff; padding:10px 20px; border-radius:50px; font-weight:bold; transform:scale(0); }
+.skill:hover { background:#2563eb; }
+
+/* CONTACT */
+.contact form { max-width:500px; margin:auto; display:flex; flex-direction:column; gap:15px; }
+.contact input, .contact textarea { padding:10px; border:2px solid #ccc; border-radius:8px; font-size:1rem; transition:border 0.3s; }
+.contact input:focus, .contact textarea:focus { border-color:#3b82f6; outline:none; }
+.contact button { padding:12px; border:none; background:#3b82f6; color:#fff; font-size:1.1rem; border-radius:8px; cursor:pointer; transition:background 0.3s; }
+.contact button:hover { background:#2563eb; }
+
+/* FOOTER */
+footer { text-align:center; padding:20px; background:#1f2937; color:#fff; }
+
+/* ANIMATIONS */
+@keyframes headerFadeIn { to{opacity:1; transform:translateY(0);} }
+@keyframes slideIn { to{opacity:1; transform:translateX(0);} }
+@keyframes navFadeIn { to{opacity:1; transform:translateY(0);} }
+@keyframes imgScale { to{transform:scale(1);} }
+@keyframes textSlideIn { to{opacity:1; transform:translateX(0);} }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .nav-links {
+        display: none;            /* hide menu by default */
+        flex-direction: column;
+        width: 100%;              /* full width */
+
+        background:#1f2937;
+        padding:10px 0;
+    }
+    .nav-links.responsive {
+        display: flex;            /* show menu */
+    }
+    .menu-toggle { 
+        display:flex; 
+        flex-direction:column; 
+        cursor:pointer; 
+        position: absolute;
+        top:20px;
+        right:20px;
+    }
+    #about { 
+        flex-direction: column; 
+        transition: margin-top 0.3s; /* smooth shift when menu opens */
+    }
+}
+
+.menu-toggle.active div:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.menu-toggle.active div:nth-child(2) { opacity: 0; }
+.menu-toggle.active div:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1>Akinbodun Abiodun</h1>
+    <p>Web Developer & Cybersecurity Enthusiast</p>
+    <nav>
+        <div class="menu-toggle" id="menu-toggle">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+    <img src="img.jpg.jpeg" alt="Your Picture">
+    <div class="info">
+        <h2>About Me</h2>
+        <p>Hello! I'm Akinbodun Abiodun, a passionate Web Developer and Cybersecurity enthusiast. I enjoy building interactive websites, creating web applications, and exploring cybersecurity to protect digital systems.</p>
+        <p>I believe in continuous learning and using my skills to create meaningful projects that solve real-world problems.</p>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-container">
+        <div class="project-card" style="animation-delay:0.2s">
+            <h3>Calculator</h3>
+            <p>A simple web-based calculator built using HTML, CSS, and JavaScript.</p>
+            <a href="iphone.html">View Project</a>
+        </div>
+        <div class="project-card" style="animation-delay:0.4s">
+            <h3>Form Validation</h3>
+            <p>A responsive form with real-time validation using JavaScript.</p>
+            <a href="Form.html">View Project</a>
+        </div>
+        <div class="project-card" style="animation-delay:0.6s">
+            <h3>To-Do List</h3>
+            <p>A dynamic to-do list application to manage tasks effectively.</p>
+            <a href="todo.html">View Project</a>
+        </div>
+        <div class="project-card" style="animation-delay:0.8s">
+            <h3>Quiz App</h3>
+            <p>An interactive quiz application with multiple-choice questions and score tracking.</p>
+            <a href="index.html">View Project</a>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">React.js</div>
+        <div class="skill">Node.js</div>
+        <div class="skill">Git & GitHub</div>
+        <div class="skill">Cybersecurity</div>
+        <div class="skill">Responsive Design</div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact">
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Akinbodun Abiodun. All rights reserved.</p>
+</footer>
+
+<script>
+// NAVBAR TOGGLE
+const toggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+
+toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('responsive');
+    toggle.classList.toggle('active');
+    
+    const aboutSection = document.getElementById('about');
+    if(navLinks.classList.contains('responsive')){
+        aboutSection.style.marginTop = navLinks.offsetHeight + 'px';
+    } else {
+        aboutSection.style.marginTop = '0';
+    }
+
+    toggle.classList.toggle('active');
+});
+
+// SMOOTH SCROLL
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({ behavior:'smooth' });
+        if(navLinks.classList.contains('responsive')) navLinks.classList.remove('responsive');
+    });
+});
+
+// SCROLL ANIMATIONS
+const animatedElements = document.querySelectorAll('section, .project-card, .skill');
+const observerOptions = { threshold:0.1 };
+
+const observer = new IntersectionObserver((entries, observer)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0) scale(1)';
+            entry.target.style.transition = 'all 0.8s ease-out';
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+animatedElements.forEach(el=>observer.observe(el));
+
+// CONTACT FORM VALIDATION
+const form = document.querySelector('form');
+form.addEventListener('submit', function(e){
+    const name = form.querySelector('input[type="text"]').value.trim();
+    const email = form.querySelector('input[type="email"]').value.trim();
+    const message = form.querySelector('textarea').value.trim();
+
+    if(name=="" || email=="" || message==""){
+        alert("Please fill in all fields before sending.");
+        e.preventDefault();
+    } else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        alert("Please enter a valid email.");
+        e.preventDefault();
+    } else {
+        alert("Message sent successfully!");
+    }
+});
+</script>
+
+</body>
+</html>
